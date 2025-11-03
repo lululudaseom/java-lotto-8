@@ -2,10 +2,15 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 public class Input {
     public static int inputAmount() {
-        System.out.print("구입금액을 입력해주세요");
         return Integer.parseInt(Console.readLine());
+    }
+
+    public static int inputNumbers(List<Integer> numbers) {
+
     }
 }
 
