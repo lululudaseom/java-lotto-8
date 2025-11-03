@@ -16,6 +16,7 @@ public class LottoCalculate { // 로또 계산
             totalPrize += (long) winningList.get(i) * PRIZES[i];
         }
 
-        return (double) totalPrize / money * 100;
+        double profit = (double) totalPrize / money * 100;
+        return Math.round(profit * 100) / 100.0; // 반올림
     } // 수익률 반환
 }

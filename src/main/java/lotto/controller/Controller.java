@@ -6,35 +6,65 @@ import lotto.model.Arrange;
 import lotto.model.LottoWinningCount;
 import lotto.view.Input;
 import lotto.view.Output;
+import lotto.model.LottoException;
 import lotto.model.generateLotto;
 import lotto.model.LottoCalculate;
 
 public class Controller {
-    public static void run(String[] args) {
-        Output.inputAmountGuide(); // 구입금액을 입력해 주세요.
-        int money = Input.inputAmount(); // 로또 구입 금액 입력 받기
+    public static void run() {
+        try {
+            int money = getMoney();
+            int count = LottoCalculate.getLottoCount(money);
+            List<List<Integer>> lottos = generateLottoList(count);
 
-        int count = LottoCalculate.getLottoCount(money); // 로또 개수 계산
+            List<Integer> winningNumbers = getWinningNumbers();
+            int bonusNumber = getBonusNumber(winningNumbers);
 
-        List<List<Integer>> lottos = generateLotto.generateLottos(count); // 로또 생성
-
-        Output.printLottoCount(count, lottos); // 로또 개수와 생성된 로또 출력
-
-        Output.NumberGuide(); // 당첨 번호를 입력해 주세요.
-        String inputNumber = Input.inputNumbers(); // 당첨 번호 입력 받기
-        List<Integer> winningNumbers = Arrange.parseAndSort(inputNumber); // 정렬
-
-        Output.BonusGuide(); // 보너스 번호를 입력해 주세요.
-        int bonusNumber = Input.inputBonus(); //보너스 번호 입력받기
-
-        // 당첨 개수 계산하기
-        List<Integer> winningList = LottoWinningCount.winningCount(lottos, winningNumbers, bonusNumber);
-
-        // 수익률 계산하기
-        double profit = LottoCalculate.calculateProfit(winningList, money);
-
-        Output.printProfit(winningList, profit);
-
+            printResult(lottos, winningNumbers, bonusNumber, money);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
+    // 금액 입력
+    private static int getMoney() {
+        Output.inputAmountGuide();
+        int money = Input.inputAmount();
+        LottoException.validateMoney(String.valueOf(money)); // static 메서드로 검증
+        return money;
+    }
+
+    // 로또 자동 생성
+    private static List<List<Integer>> generateLottoList(int count) {
+        List<List<Integer>> lottos = generateLotto.generateLottos(count);
+        Output.printLottoCount(count, lottos);
+        return lottos;
+    }
+
+    // 당첨 번호 입력
+    private static List<Integer> getWinningNumbers() {
+        Output.NumberGuide();
+        String inputNumber = Input.inputNumbers();
+        LottoException.validateWinningNumbers(inputNumber); // static 메서드로 검증
+        return Arrange.parseAndSort(inputNumber);
+    }
+
+    // 보너스 번호 입력
+    private static int getBonusNumber(List<Integer> winningNumbers) {
+        Output.BonusGuide();
+        int bonus = Input.inputBonus();
+        LottoException.validateBonusNumber(String.valueOf(bonus), winningNumbers); // static 메서드로 검증
+        return bonus;
+    }
+
+    // 결과 출력
+    private static void printResult(List<List<Integer>> lottos,
+                                    List<Integer> winningNumbers,
+                                    int bonusNumber,
+                                    int money) {
+        List<Integer> winningList =
+                LottoWinningCount.winningCount(lottos, winningNumbers, bonusNumber);
+        double profit = LottoCalculate.calculateProfit(winningList, money);
+        Output.printProfit(winningList, profit);
+    }
 }
