@@ -24,7 +24,8 @@ public class Output {
     }
 
     public static void printProfit(List<Integer> winningList, double profit) {
-        System.out.println("당첨통계\n---");
+        System.out.println("당첨통계");
+        System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + winningList.get(0) +"개");
         System.out.println("4개 일치 (50,000원) - " + winningList.get(1) +"개");
         System.out.println("5개 일치 (1,500,000원) - " + winningList.get(2) +"개");
