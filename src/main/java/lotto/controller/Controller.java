@@ -1,6 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
+
+import lotto.model.Arrange;
+import lotto.model.LottoWinningCount;
 import lotto.view.Input;
 import lotto.view.Output;
 import lotto.model.generateLotto;
@@ -19,9 +22,14 @@ public class Controller {
 
         Output.inputNumberGuide(); // 당첨 번호를 입력해 주세요.
         String inputNumber = Input.inputNumbers(); // 당첨 번호 입력 받기
+        List<Integer> winningNumbers = Arrange.parseAndSort(inputNumber); // 정렬
 
         Output.inputBonusGuide(); // 보너스 번호를 입력해 주세요.
-        int Bonus = Input.inputBonus(); //보너스 번호 입력받기
+        int bonusNumber = Input.inputBonus(); //보너스 번호 입력받기
+
+        // 당첨 개수 계산하기
+        List<Integer> winningList = LottoWinningCount.winningCount(lottos, winningNumbers, bonusNumber);
+
 
     }
 

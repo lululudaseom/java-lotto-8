@@ -116,7 +116,7 @@ Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbers
 1. ㅇ구매한 로또 개수를 반환한다. (구입 금액 / 1000) *getLottoCount*
 2. ㅇ로또 개수만큼 랜덤 중복되지 않는 숫자 6개를 뽑는다. *generateLotto*
 3. ㅇ뽑은 숫자를 오름차순으로 정렬한다. *Ascending*
-4. 당첨 번호와 로또 번호를 비교하여 다른 숫자는 리스트에서 제외한다. *removeElements*
+4. 당첨 번호와 로또 번호를 비교하여 몇개가 같은지 확인한다. *LottoMatcher*
 5. 리스트의 길이를 통해 당첨 통계를 반환한다. *ListSize*
 6. ㅇ수익률을 반환한다.(수익 / 구매한 로또 가격) *calculateProfit*
 
