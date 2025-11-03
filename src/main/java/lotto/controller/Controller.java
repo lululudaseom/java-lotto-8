@@ -20,16 +20,20 @@ public class Controller {
 
         Output.printLottoCount(count, lottos); // 로또 개수와 생성된 로또 출력
 
-        Output.inputNumberGuide(); // 당첨 번호를 입력해 주세요.
+        Output.NumberGuide(); // 당첨 번호를 입력해 주세요.
         String inputNumber = Input.inputNumbers(); // 당첨 번호 입력 받기
         List<Integer> winningNumbers = Arrange.parseAndSort(inputNumber); // 정렬
 
-        Output.inputBonusGuide(); // 보너스 번호를 입력해 주세요.
+        Output.BonusGuide(); // 보너스 번호를 입력해 주세요.
         int bonusNumber = Input.inputBonus(); //보너스 번호 입력받기
 
         // 당첨 개수 계산하기
         List<Integer> winningList = LottoWinningCount.winningCount(lottos, winningNumbers, bonusNumber);
 
+        // 수익률 계산하기
+        double profit = LottoCalculate.calculateProfit(winningList, money);
+
+        Output.printProfit(winningList, profit);
 
     }
 

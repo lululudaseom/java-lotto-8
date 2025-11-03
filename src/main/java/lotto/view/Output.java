@@ -15,21 +15,21 @@ public class Output {
         }
     }
 
-    public static void inputNumberGuide() {
+    public static void NumberGuide() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public static void inputBonusGuide() {
+    public static void BonusGuide() {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public static void getProfit() {
+    public static void printProfit(List<Integer> winningList, double profit) {
         System.out.println("당첨통계\n---");
-        System.out.println("3개 일치 (5,000원) - " + 수정해라 +"개");
-        System.out.println("4개 일치 (50,000원) - " + 수정 +"개");
-        System.out.println("5개 일치 (1,500,000원) - " + 수정 +"개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + 수정 +"개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + 수정 +"개");
-        System.out.println("총 수익률은" + 수정해라 + "%입니다.");
+        System.out.println("3개 일치 (5,000원) - " + winningList.get(0) +"개");
+        System.out.println("4개 일치 (50,000원) - " + winningList.get(1) +"개");
+        System.out.println("5개 일치 (1,500,000원) - " + winningList.get(2) +"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningList.get(3) +"개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + winningList.get(4) +"개");
+        System.out.println("총 수익률은" + profit + "%입니다.");
     }
 }
