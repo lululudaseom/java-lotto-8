@@ -1,7 +1,9 @@
 package lotto.model;
 
-public class generateLotto {
-    public static void main(String[]args) {
+import java.util.List;
 
+public class generateLotto {
+    public static int getLottoCount(int count) {
+        return count/1000;
     }
 }

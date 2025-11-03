@@ -1,15 +1,18 @@
 package lotto.view;
 
-import java.sql.SQLOutput;
+import java.util.List; //대체할 수 있는 것 찾아보기
+
 
 public class Output {
     public static void inputAmountGuide() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public static void printLottoCount() {
-        System.out.println(getLottoCount + "개를 구매했습니다.");
-        System.out.print(getLottoList);
+    public static void printLottoCount(int count, List<String> lottoStrings) {
+        System.out.println(count + "개를 구매했습니다.");
+        for (String lotto : lottoStrings) {
+            System.out.println(lotto);
+            }
     }
 
     public static void inputBonusGuide() {
@@ -25,5 +28,4 @@ public class Output {
         System.out.println("6개 일치 (2,000,000,000원) - " + 수정 +"개");
         System.out.println("총 수익률은" + 수정해라 + "%입니다.");
     }
-
 }
