@@ -26,38 +26,33 @@ public class Controller {
         }
     }
 
-    // 금액 입력
     private static int getMoney() {
         Output.inputAmountGuide();
-        int money = Input.inputAmount();
-        LottoException.validateMoney(String.valueOf(money)); // static 메서드로 검증
-        return money;
+        String input = Input.inputAmount();
+        LottoException.validateMoney(input);
+        return Integer.parseInt(input);
     }
 
-    // 로또 자동 생성
     private static List<List<Integer>> generateLottoList(int count) {
         List<List<Integer>> lottos = generateLotto.generateLottos(count);
         Output.printLottoCount(count, lottos);
         return lottos;
     }
 
-    // 당첨 번호 입력
     private static List<Integer> getWinningNumbers() {
         Output.NumberGuide();
         String inputNumber = Input.inputNumbers();
-        LottoException.validateWinningNumbers(inputNumber); // static 메서드로 검증
+        LottoException.validateWinningNumbers(inputNumber);
         return Arrange.parseAndSort(inputNumber);
     }
 
-    // 보너스 번호 입력
     private static int getBonusNumber(List<Integer> winningNumbers) {
         Output.BonusGuide();
-        int bonus = Input.inputBonus();
-        LottoException.validateBonusNumber(String.valueOf(bonus), winningNumbers); // static 메서드로 검증
-        return bonus;
+        String input = Input.inputBonus();
+        LottoException.validateBonusNumber(input, winningNumbers);
+        return Integer.parseInt(input);
     }
 
-    // 결과 출력
     private static void printResult(List<List<Integer>> lottos,
                                     List<Integer> winningNumbers,
                                     int bonusNumber,
